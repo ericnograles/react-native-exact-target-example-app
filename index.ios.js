@@ -16,18 +16,23 @@ import ExactTarget from 'react-native-exact-target';
 
 export default class ExampleApp extends Component {
   componentDidMount() {
-    ExactTarget.initializePushManager({
-      appId: 'test-app-id-ios',
-      accessToken: 'test-access-token-ios',
-      enableAnalytics: false,
-      enableLocationServices: false,
-      enableProximityServices: false,
-      enableCloudPages: false,
-      enablePIAnalytics: false
-    });
+    ExactTarget
+      .initializePushManager({
+        appId: 'test-app-id-ios',
+        accessToken: 'test-access-token-ios',
+        enableAnalytics: false,
+        enableLocationServices: false,
+        enableProximityServices: false,
+        enableCloudPages: false,
+        enablePIAnalytics: false
+      })
+      .catch(error => {
+        console.log('There has been an error');
+        console.error(error);
+      });
 
-    ExactTarget.resetBadgeCount();
-    ExactTarget.shouldDisplayAlertViewIfPushReceived(true);
+    //ExactTarget.resetBadgeCount();
+    //ExactTarget.shouldDisplayAlertViewIfPushReceived(true);
   }
 
   render() {
